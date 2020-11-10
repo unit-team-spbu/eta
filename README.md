@@ -1,3 +1,5 @@
-# Project Title 
+# Анализатор тематики мероприятий
 
-Place there all basic information needed for anyone to get started with your repository
+Микросервис предназначенный для вычленения ключевых слов из заданного набора (тэгов) по текстовому описанию мероприятия.
+
+Название `event_theme_analyzer`
