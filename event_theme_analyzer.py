@@ -151,6 +151,7 @@ class EventThemeAnalyzer:
     name = "event_theme_analyzer"
     tag_das = RpcProxy("tag_das")
     stop_words = stopwords.words("russian")
+    logger_rpc = RpcProxy('logger')
     morph = pymorphy2.MorphAnalyzer()
 
     # array of arrays fro tags where each inner array is a subset of aliases for tag
@@ -180,7 +181,11 @@ class EventThemeAnalyzer:
         for word in words:
             # TODO: replace this with call of tag_das
             # selected_tags = [t["tag"] for t in tags if word in t["aliases"]]
-            selected_tags = self.tag_das.get_tags_by_alias(word)
+            try:
+                selected_tags = self.tag_das.get_tags_by_alias(word)
+            except:
+                self.logger_rpc.log(self.name, self._analyze.__name__, text, "Error", "Can't get tags from tag_das")
+                continue
 
             print("For word: {} tags are: {}".format(word, selected_tags))
 
@@ -226,7 +231,10 @@ class EventThemeAnalyzer:
 
     @rpc
     def analyze_events(self, events):
+        self.logger_rpc.log(self.name, self.analyze_events.__name__, events, "Info", "Starting analizing")
+
         for event in events:
             event["tags"].extend(self._analyze(event["description"]))
 
+        self.logger_rpc.log(self.name, self.analyze_events.__name__, events, "Info", "Analizing ended")
         return events
