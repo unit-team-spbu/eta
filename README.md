@@ -64,8 +64,6 @@ docker-compose --file docker-compose.local.yml up -d
 nameko run event_theme_analyzer
 ```
 
-После чего можно проверить работоспособность сервиса через `.rest` файл (с расширением для VSCode/PyCharm), через Postman. Проверка таким образом производится по `http`.
-
 Для проверки `rpc` запустите в командной строке:
 
 ```bat
