@@ -12,137 +12,84 @@ from werkzeug.wrappers import Request
 
 nltk.download("stopwords")
 
-# ! this hand-written tags were sopposed to be a bit odd
-# tags = [
-#     {
-#         "tag": "WEB",
-#         "aliases": [
-#             "js",
-#             "javascript",
-#             "ts",
-#             "typescript",
-#             "css",
-#             "html",
-#             "es5",
-#             "es6",
-#             "asp.net",
-#             "css3",
-#             "html5",
-#             "php",
-#             "webassembly",
-#             "web",
-#             "веб",
-#             "сайт",
-#             "nodejs",
-#             "node",
-#             "react",
-#             "angular",
-#             "vue"
-#         ]
-#     },
-#     {
-#         "tag": "GD",
-#         "aliases": [
-#             "unity",
-#             "unreal",
-#             "игра",
-#             "gamedev",
-#             "игры",
-#             "unity3d",
-#             "c#",
-#             "c++"
-#         ]
-#     },
-#     {
-#         "tag": "mobile",
-#         "aliases": [
-#             "android",
-#             "ios",
-#             "kotlin",
-#             "java",
-#             "google"
-#             "мобил",
-#             "мобильный"
-#         ]
-#     },
-#     {
-#         "tag": "robot",
-#         "aliases": [
-#             "робототехника",
-#             "робот",
-#             "дрон",
-#             "ros",
-#             "arduino",
-#             "raspberry",
-#             "микроконтроллеры"
-#         ]
-#     },
-#     {
-#         "tag": "devops",
-#         "aliases": [
-#             "devops",
-#             "docker",
-#             "jenkins",
-#             "container",
-#             "контейнер",
-#             "развертка",
-#             "kubernetes",
-#             "ansible",
-#             "k8s",
-#             "слёрм",
-#             "gitlab",
-#             "linux",
-#             "ci/cd",
-#             "ci",
-#             "cd"
-#         ]
-#     },
-#     {
-#         "tag": "qa",
-#         "aliases": [
-#             "qa",
-#             "testing",
-#             "selenium",
-#             "tdd"
-#             "тест",
-#             "тестирование",
-#             "тестировщик"
-#         ]
-#     },
-#     {
-#         "tag": "ds",
-#         "aliases": [
-#             "machine",
-#             "learning",
-#             "python",
-#             "hadoop",
-#             "bigdata",
-#             "data",
-#             "neural",
-#             "нейроны",
-#             "нейроный",
-#             "анализ"
-#             "данные"
-#             "r",
-#             "mining",
-#             "искуственный"
-#         ]
-#     },
-#     {
-#         "tag": "ui",
-#         "aliases": [
-#             "интерфейсы",
-#             "интерфейс",
-#             "юзабилити",
-#             "usability",
-#             "дизайн",
-#             "ux",
-#             "ui",
-#             "interface",
-#         ]
-#
-# # ! this hand-written tags were sopposed to be a bit odd    }
-# ]
+global_tags = [
+    {
+        "tag": "Web",
+        "aliases": ["javascript", "разработка", "css", "react", "angular", "web", "php", "vue", "программирование", "typescript"]
+    },
+    {
+        "tag": "Gamedev",
+        "aliases": ["gamedev", "игры", "геймдев", "unity", "unity3d", "c#", "геймдизайн", "game"]
+    },
+    {
+        "tag": "Mobile",
+        "aliases": ["android", "ios", "swift", "мобильная", "разработка", "kotlin", "android", "мобильные", "ios", "flutter", "xamarin"]
+    },
+    {
+        "tag": "Robot",
+        "aliases": ["роботы", "робототехника", "искусственный", "интеллект", "дроны", "nasa", "марс", "будущее", "arduino", "ros", "квадрокоптер", ]
+    },
+    {
+        "tag": "DevOps",
+        "aliases": ["devops", "kubernetes", "docker", "ansible", "k8s", "gitlab", "слёрм", "open", "source", "ci", "cd", "linux"]
+    },
+    {
+        "tag": "QA",
+        "aliases": ["тестирование", "qa", "automation", "testing", "selenium", "heisenbug", "автоматизация", "тестирования"]
+    },
+    {
+        "tag": "DataScience",
+        "aliases": ["big", "data", "science", "machine", "learning", "машинное", "обучение", "mining", "анализ", "данных", "большие", "данные", "python", "hadoop", "bigdata"]
+    },
+    {
+        "tag": "UI",
+        "aliases": ["интерфейсы", "юзабилити", "дизайн", "ux", "ui", "интерфейс"]
+    },
+    {
+        "tag": "Java",
+        "aliases": ["java", "kotlin",  "android", "spring", "boot", "программирование", "jvm", "spring", "jpoint", "j2me", "mobile", "midlets", "nokia", "sun", "javafx", "cldc"]
+    },
+    {
+        "tag": "PHP",
+        "aliases": ["php", "laravel", "symfony", "yii", "web"]
+    },
+    {
+        "tag": "Python",
+        "aliases": ["python", "машинное", "обучение", "machine", "learning", "python3", "data", "science", "django", "tensorflow", "pandas", "flask"]
+    },
+    {
+        "tag": "Csharp",
+        "aliases": ["c#", "microsoft", "asp.net", "azure", ".net", "core", "unity3d", "unity", "wpf", "visual", "studio", "xamarin", "xamarin.forms", "android", "xamarincolumn", "ios", "xamarin.android"]
+    },
+    {
+        "tag": "Cplus",
+        "aliases": ["c++", "pvs-studio", "c", "программирование", "си++", "c++11", "qt", "qml", "qt5", "qt4"]
+    },
+    {
+        "tag": "CSS",
+        "aliases": ["css", "css3", "javascript", "html", "html5", "браузеры", "react", "angular", "es6"]
+    },
+    {
+        "tag": "HTML",
+        "aliases": ["javascript", "css", "html5", "html", "react", "браузеры", "angular", "фронтенд", "es6", "vue"]
+    },
+    {
+        "tag": "JavaScript",
+        "aliases": ["javascript", "разработка", "react", "angular", "vue", "css", "фронтенд", "typescript", "программирование", "es6"]
+    },
+    {
+        "tag": "React",
+        "aliases": ["react", "javascript", "react.js", "redux", "reactjs", "разработка", "frontend", "native", "typescript", "web"]
+    },
+    {
+        "tag": "Angular",
+        "aliases": ["angular", "angularjs", "javascript", "typescript", "angular2",  "react", "frontend", "rxjs", "node", "js"]
+    },
+    {
+        "tag": "Kotlin",
+        "aliases": ["kotlin", "java", "android", "jetbrains",  "котлин", "jvm", "coroutines"]
+    }
+]
 
 
 class EventThemeAnalyzer:
@@ -151,7 +98,7 @@ class EventThemeAnalyzer:
     name = "event_theme_analyzer"
     tag_das = RpcProxy("tag_das")
     stop_words = stopwords.words("russian")
-    logger_rpc = RpcProxy('logger')
+    logger_rpc = RpcProxy("logger")
     morph = pymorphy2.MorphAnalyzer()
 
     # array of arrays fro tags where each inner array is a subset of aliases for tag
@@ -180,20 +127,25 @@ class EventThemeAnalyzer:
 
         for word in words:
             # TODO: replace this with call of tag_das
-            # selected_tags = [t["tag"] for t in tags if word in t["aliases"]]
-            try:
-                selected_tags = self.tag_das.get_tags_by_alias(word)
-            except:
-                self.logger_rpc.log(self.name, self._analyze.__name__, text, "Error", "Can't get tags from tag_das")
-                continue
+            selected_tags = []
 
-            print("For word: {} tags are: {}".format(word, selected_tags))
+            for tag in global_tags:
+                if word in tag["aliases"]:
+                    print("appending {}".format(tag["tag"]))
+                    selected_tags.append(tag["tag"])
+
+            # try:
+            # selected_tags = self.tag_das.get_tags_by_alias(word)
+            # except:
+            # self.logger_rpc.log(
+            # self.name, self._analyze.__name__, text, "Error", "Can't get tags from tag_das")
+            # continue
 
             for tag in selected_tags:
-                if tag["tag"] in tags:
-                    tags[tag["tag"]] += 1
+                if tag in tags.keys():
+                    tags[tag] += 1
                 else:
-                    tags[tag["tag"]] = 1
+                    tags[tag] = 1
 
         tag_num = np.sum([v for _, v in tags.items()])
 
@@ -212,7 +164,7 @@ class EventThemeAnalyzer:
         result = []
 
         for tag in tags.keys():
-            if tags[tag] > mean:
+            if tags[tag] >= mean:
                 result.append(tag)
 
         return result
@@ -231,10 +183,12 @@ class EventThemeAnalyzer:
 
     @rpc
     def analyze_events(self, events):
-        self.logger_rpc.log(self.name, self.analyze_events.__name__, events, "Info", "Starting analizing")
+        self.logger_rpc.log(self.name, self.analyze_events.__name__,
+                            events, "Info", "Starting analizing")
 
         for event in events:
             event["tags"].extend(self._analyze(event["description"]))
 
-        self.logger_rpc.log(self.name, self.analyze_events.__name__, events, "Info", "Analizing ended")
+        self.logger_rpc.log(
+            self.name, self.analyze_events.__name__, events, "Info", "Analizing ended")
         return events
