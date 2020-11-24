@@ -14,8 +14,9 @@
 | `requirements.txt`         | Верхнеуровневые зависимости                             |
 | `requirements.lock`        | Все зависимости (`pip freeze`)                          |
 | `Dockerfile`               | Описание сборки контейнера сервиса                      |
-| `docker-compose.yml`       | Изолированная развертка сервиса вместе с (RabbitMQ)     |
-| `docker-compose.local.yml` | Развертка зависимостей для дебаггинга (RabbitMQ)        |
+| `docker-compose.yml`       | Изолированная развертка сервиса вместе с RabbitMQ       |
+| `docker-compose.local.yml` | Развертка зависимостей для дебаггинга RabbitMQ          |
+| `.rest`                    | Тесты взаимодействия с HTTP эндпоинтами микросервиса    |
 | `README.md`                | Описание микросервиса                                   |
 
 ## API
